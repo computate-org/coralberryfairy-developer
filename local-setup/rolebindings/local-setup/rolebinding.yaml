@@ -1,0 +1,186 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: coralberryfairy
+  name: database-local-setup-exec
+rules:
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["get", "create"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: coralberryfairy
+  name: database-local-setup-exec
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: database-local-setup-exec
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: postgres
+  name: coralberryfairy-database-local-setup-exec
+rules:
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["get", "create"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: postgres
+  name: coralberryfairy-database-local-setup-exec
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: coralberryfairy-database-local-setup-exec
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: coralberryfairy
+  name: local-setup-exec
+rules:
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["get", "create"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list", "create", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: coralberryfairy
+  name: local-setup-exec
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: local-setup-exec
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: postgres
+  name: coralberryfairy-local-setup-postgres-secrets
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: postgres
+  name: coralberryfairy-local-setup-postgres-secrets
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: coralberryfairy-local-setup-postgres-secrets
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: solr
+  name: solr-local-setup-coralberryfairy-exec
+rules:
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["get", "create"]
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: solr
+  name: solr-local-setup-coralberryfairy-exec
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: solr-local-setup-coralberryfairy-exec
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: solr
+  name: coralberryfairy-local-setup-solr-secrets
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: solr
+  name: coralberryfairy-local-setup-solr-secrets
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: coralberryfairy-local-setup-solr-secrets
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: keycloak
+  name: coralberryfairy-local-setup-keycloak-secrets
+rules:
+- apiGroups: [""]
+  resources: ["secrets"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  namespace: keycloak
+  name: coralberryfairy-local-setup-keycloak-secrets
+subjects:
+- kind: ServiceAccount
+  name: local-setup
+  namespace: coralberryfairy
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: coralberryfairy-local-setup-keycloak-secrets

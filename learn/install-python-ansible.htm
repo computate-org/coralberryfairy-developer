@@ -1,0 +1,69 @@
+{% extends "en-us/PageLayout.htm" %}
+{% block htmMetaPageLayout %}
+{{ super() }}
+    <meta name="result.pageId" content="{{ result.shortFileName }}" />
+    <meta name="result.name" content="Install Python and Ansible on your own computer" />
+    <meta name="result.description" content="Learn how to install a Python virtual environment and Ansible dependencies for automation and cloud deployment. " />
+    <meta name="result.authorName" content="Christopher Tate" />
+    <meta name="result.authorUrl" content="{{ SITE_BASE_URL }}/en-us/learn/about/about-christopher-tate" />
+    <meta name="result.created" content="2025-10-15T19:24:14.556[America/Denver]" />
+    <meta name="result.pageImageUri" content="/png/python-vars-py.png" />
+    <meta name="result.pageImageAlt" content="The vars.py Python script" />
+    <meta name="result.labelsString" content="getting-started" />
+    <meta name="result.courseNum" content="0"/>
+{% endblock htmMetaPageLayout %}
+{% block htmStylePageLayout %}
+{% endblock htmStylePageLayout %}
+{% block htmBodyMiddlePageLayout %}
+
+    <div class="wa-stack">
+      <div class="wa-heading-xl ">
+        Installing Python prerequisites
+      </div>
+      <div class="wa-heading-l ">
+        Install Python VirtualEnv
+      </div>
+      {{ code('pip3 install virtualenv') }}
+      <div class="wa-heading-m ">
+        Install a local python VirtualEnv
+      </div>
+      {{ code('virtualenv ~/.local/opt/python
+ls ~/.local/opt/python/bin/python') }}
+      <p>
+        Update your <kbd>~/.bashrc</kbd> to use the new Python VirtualEnv. 
+      </p>
+      {{ code('which python
+echo "source ~/.local/opt/python/bin/activate" | tee -a ~/.bashrc
+source ~/.bashrc
+which python') }}
+      <div class="wa-heading-m ">
+        Install prerequisite Python packages for Ansible
+      </div>
+      <p>
+        Whenever I install Ansible, I find there are some required Python dependencies. 
+        Install the `setuptools_rust` and `wheel` Python dependencies below.
+      </p>
+      {{ code('pip3 install setuptools_rust wheel') }}
+      <div class="wa-heading-m ">
+        Upgrade pip the python package manager
+      </div>
+      <p>
+        Next upgrade pip, the python package manager for the latest python package support. 
+      </p>
+      {{ code('pip3 install --upgrade pip') }}
+      <div class="wa-heading-m ">
+        Install Ansible automation tools
+      </div>
+      <p>
+        Ansible is the enterprise open source standard tool for automating everything on the computer. 
+        In my opinion, if you are automating your computers and cloud environments without Ansible, you are doing it wrong. 
+        Install the latest ansible software with python pip, 
+        as well as other important python dependencies like `kubernetes`, `openshift`, and `jmespath` 
+        which are required to automate OpenShift deployments. 
+        Then check that the `ansible-playbook` command is available to run. 
+      </p>
+      {{ code('pip3 install ansible kubernetes openshift jinja2 jmespath pika jinja2 --upgrade
+ansible-galaxy collection install community.general --upgrade
+which ansible-playbook') }}
+    </div>
+{% endblock %}

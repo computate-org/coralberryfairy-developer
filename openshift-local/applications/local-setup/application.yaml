@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: git@github.com:computate-org/coralberryfairy-developer.git
     targetRevision: HEAD
-    path: local-setup/
+    path: openshift-local/local-setup/
   destination:
     namespace: coralberryfairy
     server: 'https://kubernetes.default.svc'

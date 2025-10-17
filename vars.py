@@ -28,10 +28,7 @@ def b64decode(str):
     return base64.b64decode(str).decode("utf-8")
 
 def to_bool(s):
-    if s == None:
-        return False
-    else:
-        return bool(strtobool(str(s)))
+    return str(s).lower() in ("y", "yes", "t", "true", "on", "1")
 
 def lookup(lookup, arg1, errors='strict'):
     if lookup == 'env':

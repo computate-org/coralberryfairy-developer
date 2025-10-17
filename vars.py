@@ -10,7 +10,6 @@ import re
 import kubernetes
 import base64
 from openshift.dynamic import DynamicClient
-from distutils.util import strtobool
 
 def split(str, separator):
     return str.split(separator)

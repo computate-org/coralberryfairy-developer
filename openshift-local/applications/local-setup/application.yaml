@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:computate-org/coralberryfairy-developer.git
+    repoURL: https://github.com/computate-org/coralberryfairy-developer.git
     targetRevision: HEAD
     path: openshift-local/local-setup/
   destination:
